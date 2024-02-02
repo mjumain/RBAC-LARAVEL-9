@@ -26,6 +26,9 @@
                     <div class="card card-primary card-outline">
                         <div class="card-header">
                             <h5 class="m-0"></h5>
+                            <div class="card-tools">
+                                <a href="http://" class="btn btn-tool"><i class="fas fa-plus-circle"></i></a>
+                            </div>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">

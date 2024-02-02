@@ -17,8 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        toast('Are you the 6 fingered man?');
-        $users=User::all();
+        // Display an error toast with no title
+        toastr()->error('Oops! Something went wrong!');
+        $users = User::all();
         return view('users.index', compact('users'));
     }
 

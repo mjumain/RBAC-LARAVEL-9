@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -22,8 +21,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Alert::toast('Toast Message', 'Toast Type');
-        Alert::question('Question Title', 'Question Message');
         return view('home');
     }
 }

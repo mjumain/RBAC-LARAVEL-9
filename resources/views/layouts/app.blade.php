@@ -21,9 +21,9 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="{{ asset('') }}dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        <img class="animation__shake" src="{{ asset('') }}dist/img/AdminLTELogo.png" alt="AdminLTELogo"
+            height="60" width="60">
     </div>
-    @include('sweetalert::alert')
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -109,8 +109,13 @@
             <!-- /.sidebar -->
 
             <div class="sidebar-custom">
-                <button type="button" class="btn btn-info btn-block"><i class="fa fa-right-from-bracket"></i>
-                    Keluar</button>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a class="btn btn-info btn-block" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                this.closest('form').submit();"><i
+                            class="fas fa-sign-out-alt"></i><span>Keluar</span></a>
+                </form>
             </div>
             <!-- /.sidebar-custom -->
         </aside>
