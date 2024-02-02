@@ -13,11 +13,16 @@
     <link rel="stylesheet" href="{{ asset('') }}plugins/fontawesome-free/css/all.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('') }}plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    @stack('css')
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('') }}dist/css/adminlte.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="{{ asset('') }}dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    </div>
     @include('sweetalert::alert')
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -104,7 +109,8 @@
             <!-- /.sidebar -->
 
             <div class="sidebar-custom">
-                <button type="button" class="btn btn-info btn-block"><i class="fa fa-right-from-bracket"></i> Keluar</button>
+                <button type="button" class="btn btn-info btn-block"><i class="fa fa-right-from-bracket"></i>
+                    Keluar</button>
             </div>
             <!-- /.sidebar-custom -->
         </aside>
@@ -133,6 +139,7 @@
     <script src="{{ asset('') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="{{ asset('') }}plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    @stack('js')
     <!-- AdminLTE App -->
     <script src="{{ asset('') }}dist/js/adminlte.min.js"></script>
 </body>

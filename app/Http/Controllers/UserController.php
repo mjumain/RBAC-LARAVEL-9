@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Builder\Use_;
+use RealRashid\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\Toaster;
 
 class UserController extends Controller
 {
@@ -13,7 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        toast('Are you the 6 fingered man?');
+        $users=User::all();
+        return view('users.index', compact('users'));
     }
 
     /**

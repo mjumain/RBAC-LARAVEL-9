@@ -14,7 +14,12 @@
                     </a>
                 </li>
             @else
-                <li class="nav-item">
+                @foreach ($submenu->submenus2 as $url)
+                    @php
+                        $urls[] = $url->url;
+                    @endphp
+                @endforeach
+                <li class="nav-item {{ in_array(Request::segment(1), $urls) ? 'menu-open' : '' }} ">
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
@@ -25,7 +30,8 @@
                     <ul class="nav nav-treeview">
                         @foreach ($submenu->submenus2 as $endmenu)
                             <li class="nav-item">
-                                <a href="{{ url($endmenu->url) }}" class="nav-link">
+                                <a href="{{ url($endmenu->url) }}"
+                                    class="nav-link {{ url()->current() == url($endmenu->url) ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ ucwords($endmenu->nama_menu) }}</p>
                                 </a>
