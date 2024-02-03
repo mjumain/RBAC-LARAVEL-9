@@ -1,6 +1,4 @@
 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-
     @foreach (json_decode(MenuHelper::Menu()) as $menu)
         <li class="nav-header">{{ strtoupper($menu->nama_menu) }}</li>
         @foreach ($menu->submenus as $submenu)
@@ -19,9 +17,9 @@
                         $urls[] = $url->url;
                     @endphp
                 @endforeach
-                <li class="nav-item {{ in_array(Request::segment(1), $urls) ? 'menu-open' : '' }} ">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
+                <li class="nav-item {{ in_array(Request::segment(1), $urls) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ in_array(Request::segment(1), $urls) ? 'active' : '' }}">
+                        <i class="nav-icon {{ $submenu->icon }}"></i>
                         <p>
                             {{ ucwords($submenu->nama_menu) }}
                             <i class="fas fa-angle-left right"></i>

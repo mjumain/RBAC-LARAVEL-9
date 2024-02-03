@@ -8,7 +8,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class MasterSeeder extends Seeder
 {
@@ -22,7 +22,7 @@ class MasterSeeder extends Seeder
         $menu = Menu::create([
             'nama_menu' => 'Menu Operator',
             'url' => '#',
-            'icon' => 'glyphicon glyphicon-tags',
+            'icon' => '',
             'parent_id' => '0',
             'urutan' => 1
         ]);
@@ -32,7 +32,7 @@ class MasterSeeder extends Seeder
         Menu::create([
             'nama_menu' => 'dashboard',
             'url' => 'home',
-            'icon' => 'glyphicon glyphicon-tags',
+            'icon' => 'fas fa-home',
             'parent_id' => $menu->id,
             'urutan' => 1
         ]);
@@ -40,7 +40,7 @@ class MasterSeeder extends Seeder
         $submenu = Menu::create([
             'nama_menu' => 'Manajemen Pengguna',
             'url' => '#',
-            'icon' => 'glyphicon glyphicon-tags',
+            'icon' => 'fas fa-users-cog',
             'parent_id' => $menu->id,
             'urutan' => 2
         ]);
