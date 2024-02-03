@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:read_menu')->only('index', 'show');
+        $this->middleware('permission:create_menu')->only('create', 'store');
+        $this->middleware('permission:update_menu')->only('edit', 'update');
+        $this->middleware('permission:delete_menu')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::all();
+        return view('menus.index', compact('menus'));
     }
 
     /**
@@ -24,7 +32,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        $menus = Menu::all();
+        return view('menus.create', compact('menus'));
     }
 
     /**
