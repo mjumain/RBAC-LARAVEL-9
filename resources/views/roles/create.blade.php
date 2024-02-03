@@ -26,7 +26,7 @@
                                 <a href="http://" class="btn btn-tool"><i class="fas fa-plus-circle"></i></a>
                             </div>
                         </div>
-                        <form action="" method="post">
+                        <form action="{{ route('manage-role.store') }}" method="post">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
