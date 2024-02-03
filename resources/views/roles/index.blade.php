@@ -27,7 +27,7 @@
                         <div class="card-header">
                             <h5 class="m-0"></h5>
                             <div class="card-tools">
-                                <a href="http://" class="btn btn-tool"><i class="fas fa-plus-circle"></i></a>
+                                <a href="{{ route('manage-role.create') }}" class="btn btn-tool"><i class="fas fa-plus-circle"></i></a>
                             </div>
                         </div>
                         <div class="card-body">

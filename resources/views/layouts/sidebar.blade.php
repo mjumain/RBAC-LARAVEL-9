@@ -31,7 +31,7 @@
                         @foreach ($submenu->submenus2 as $endmenu)
                             <li class="nav-item">
                                 <a href="{{ url($endmenu->url) }}"
-                                    class="nav-link {{ url()->current() == url($endmenu->url) ? 'active' : '' }}">
+                                    class="nav-link {{ Request::segment(1) == $endmenu->url ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ ucwords($endmenu->nama_menu) }}</p>
                                 </a>

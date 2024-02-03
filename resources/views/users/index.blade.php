@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 text-uppercase">
-                    <h1 class="m-0">manajemen pengguna</h1>
+                    <h4 class="m-0">manajemen pengguna</h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,9 +25,10 @@
                 <div class="col-md-12">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h5 class="m-0"></h5>
+                            <h3 class="card-title">Data Pengguna</h3>
                             <div class="card-tools">
-                                <a href="http://" class="btn btn-tool"><i class="fas fa-plus-circle"></i></a>
+                                <a href="{{ route('manage-user.create') }}" class="btn btn-tool"><i
+                                        class="fas fa-plus-circle"></i></a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -36,6 +37,8 @@
                                     <th>No</th>
                                     <th>Nama Pengguna</th>
                                     <th>Email</th>
+                                    <th>Role Pengguna</th>
+                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $item)
@@ -43,6 +46,23 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
+                                            <td>
+                                                @foreach ($item->roles->pluck('name') as $role)
+                                                    {{ $role }}
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-block btn-sm btn-outline-info"
+                                                    data-toggle="dropdown"><i class="fas fa-cog"></i>
+                                                </button>
+                                                <div class="dropdown-menu" role="menu">
+                                                    <a class="dropdown-item" href="#">Lihat</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('manage-user.edit', $item->id) }}">Edit</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Hapus</a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
