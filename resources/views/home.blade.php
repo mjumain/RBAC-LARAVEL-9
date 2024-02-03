@@ -25,7 +25,7 @@
                             <h5 class="m-0">Featured</h5>
                         </div>
                         <div class="card-body">
-                           
+
                             <a href="#" class="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
