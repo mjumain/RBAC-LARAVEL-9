@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 text-uppercase">
-                    <h4 class="m-0">Tambah Pengguna</h4>
+                    <h4 class="m-0">Tambah Menu</h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,18 +23,19 @@
                         <div class="card-header">
                             <h5 class="card-title m-0"></h5>
                             <div class="card-tools">
-                                <a href="{{ route('manage-user.index') }}" class="btn btn-tool"><i
+                                <a href="{{ route('manage-menu.index') }}" class="btn btn-tool"><i
                                         class="fas fa-arrow-alt-circle-left"></i></a>
                             </div>
                         </div>
-                        <form action="{{ route('manage-user.store') }}" method="post">
+                        <form action="{{ route('manage-menu.store') }}" method="post">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Menu</label>
-                                    <input type="text" name="name"
-                                        class="form-control @error('name')is-invalid @enderror" placeholder="Nama Lengkap">
-                                    @error('name')
+                                    <input type="text" name="nama_menu"
+                                        class="form-control @error('nama_menu')is-invalid @enderror"
+                                        placeholder="Nama Menu">
+                                    @error('nama_menu')
                                         <div class="invalid-feedback" role="alert">
                                             <span>{{ $message }}</span>
                                         </div>
@@ -47,8 +48,8 @@
                                 <div class="form-group">
                                     <label>Icon Menu</label>
                                     <select name="icon" id="" class="form-control">
-                                        @foreach ($menus as $item)
-                                        @endforeach
+                                        <option value="be">Backend</option>
+                                        <option value="fe">Frontend</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -56,7 +57,9 @@
                                     <select name="parent_id" id="" class="form-control">
                                         <option value="0">Sebagai Parent Menu</option>
                                         @foreach ($menus as $item)
-                                            <option value="{{ $item->id }}">{!! 'Child menu dari ' . ($item->id = 0) ? strtoupper($item->nama_menu) : ucwords($item->nama_menu) !!}</option>
+                                            <option value="{{ $item->id }}">Child dari menu
+                                                {{ $item->parent_id == 0 ? strtoupper($item->nama_menu) : ucwords($item->nama_menu) }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>

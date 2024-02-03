@@ -95,7 +95,7 @@
                     <a class="btn btn-info btn-block" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                 this.closest('form').submit();"><i
-                            class="fas fa-sign-out-alt"></i><span>Keluar</span></a>
+                            class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
                 </form>
             </div>
         </aside>

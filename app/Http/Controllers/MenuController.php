@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
 {
@@ -32,7 +33,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $menus = Menu::all();
+        $menus = Menu::get();
         return view('menus.create', compact('menus'));
     }
 
@@ -44,7 +45,33 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama_menu' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            toastr()->error('Menu gagal ditambah </br> Periksa kembali data anda');
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        };
+
+        try {
+            Menu::insert(
+                [
+                    'nama_menu' => $request->nama_menu,
+                    'url' => $request->url,
+                    'parent_id' => $request->parent_id,
+                    'icon' => $request->icon,
+                    'urutan' => 1,
+                ]
+            );
+            toastr()->success('Menu berhasil disimpan');
+            return redirect()->route('manage-menu.index');
+        } catch (\Throwable $th) {
+            toastr()->warning('Terdapat masalah diserver');
+            return redirect()->route('manage-menu.index');
+        }
     }
 
     /**

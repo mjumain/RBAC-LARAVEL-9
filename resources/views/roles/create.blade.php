@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 text-uppercase">
-                    <h1 class="m-0">manajemen pengguna</h1>
+                    <h1 class="m-0">tambah role</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -29,7 +29,18 @@
                         <form action="" method="post">
                             @csrf
                             <div class="card-body">
-                                <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Nama Role Akses</label>
+                                    <input type="text" name="name"
+                                        class="form-control @error('name')is-invalid @enderror"
+                                        placeholder="Nama Role Akses">
+                                    @error('name')
+                                        <div class="invalid-feedback" role="alert">
+                                            <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>Roles Menu Permission</label>
                                     <ul class="checktree">
                                         @foreach ($menus as $menu)
@@ -67,7 +78,7 @@
                                                                                     <input type="checkbox"
                                                                                         name="permission_id[]"
                                                                                         value="{{ $permission->id }}">
-                                                                                    {!! $permission->detail . '<i>( ' . $permission->permission . ' )</i>' !!}
+                                                                                    {!! $permission->detail . '<i>( ' . $permission->permission . ')</i>' !!}
                                                                                 </li>
                                                                             @endforeach
                                                                         </ul>
@@ -112,7 +123,10 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card-footer"></div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-info btn-block btn-flat"><i class="fa fa-save"></i>
+                                    Simpan</button>
+                            </div>
                         </form>
                     </div>
                 </div>
