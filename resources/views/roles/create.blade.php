@@ -103,7 +103,7 @@
                                                                                                 <li>
                                                                                                     <input type="checkbox"
                                                                                                         name="permission_id[]"
-                                                                                                        value="{{ $permission->id }}">
+                                                                                                        value="{{ $permission->name }}">
                                                                                                     {!! $permission->detail . '<i>(' . $permission->name . ' )</i>' !!}
                                                                                                 </li>
                                                                                             @endforeach

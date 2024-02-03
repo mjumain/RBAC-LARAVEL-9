@@ -27,14 +27,15 @@
                                         class="fas fa-arrow-alt-circle-left"></i></a>
                             </div>
                         </div>
-                        <form action="{{ route('manage-menu.store') }}" method="post">
+                        <form action="{{ route('manage-menu.update', $menu->id) }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Menu</label>
                                     <input type="text" name="nama_menu"
-                                        class="form-control @error('nama_menu')is-invalid @enderror"
-                                        placeholder="Nama Menu">
+                                        class="form-control @error('nama_menu')is-invalid @enderror" placeholder="Nama Menu"
+                                        value="{{ $menu->nama_menu }}">
                                     @error('nama_menu')
                                         <div class="invalid-feedback" role="alert">
                                             <span>{{ $message }}</span>
@@ -43,20 +44,24 @@
                                 </div>
                                 <div class="form-group">
                                     <label>URL</label>
-                                    <input type="text" name="url" class="form-control" placeholder="URL">
+                                    <input type="text" name="url" class="form-control" placeholder="URL"
+                                        value="{{ $menu->url }}">
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>Icon Menu</label>
                                     <select name="icon" id="" class="form-control">
 
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label>Parent Menu</label>
+                                    {{-- @dd($menus); --}}
                                     <select name="parent_id" id="" class="form-control">
                                         <option value="0">Sebagai Parent Menu</option>
                                         @foreach ($menus as $item)
-                                            <option value="{{ $item->id }}">Child dari menu
+                                            <option value="{{ $item->id }}"
+                                                {{ $item->id == $menu->id ? 'selected' : '' }}>
+                                                Child dari menu
                                                 {{ $item->parent_id == 0 ? strtoupper($item->nama_menu) : ucwords($item->nama_menu) }}
                                             </option>
                                         @endforeach

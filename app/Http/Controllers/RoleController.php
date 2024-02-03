@@ -45,7 +45,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        try {
+            $role = Role::create(['name' => $request->name]);
+            $role->syncPermissions($request->permission_id);
+            toastr()->success('Role berhasil disimpan');
+            return redirect()->route('manage-role.index');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**

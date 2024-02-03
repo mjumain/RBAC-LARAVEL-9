@@ -33,7 +33,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $menus = Menu::get();
+        $menus = Menu::all();
         return view('menus.create', compact('menus'));
     }
 
@@ -91,9 +91,11 @@ class MenuController extends Controller
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Menu $menu)
+    public function edit($id)
     {
-        //
+        $menus = Menu::all();
+        $menu = Menu::findorfail($id);
+        return view('menus.edit', compact('menu', 'menus'));
     }
 
     /**
@@ -103,9 +105,21 @@ class MenuController extends Controller
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        try {
+            $menu = Menu::findorfail($id);
+            $menu->nama_menu = $request->post('nama_menu');
+            $menu->url = $request->post('url');
+            $menu->parent_id = $request->post('parent_id');
+            $menu->update();
+            toastr()->success('Menu berhasil disimpan');
+            return redirect()->route('manage-menu.index');
+        } catch (\Throwable $th) {
+            toastr()->warning('Terdapat masalah diserver');
+            return redirect()->route('manage-menu.index');
+        }
     }
 
     /**
@@ -114,8 +128,10 @@ class MenuController extends Controller
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Menu $menu)
+    public function destroy($id)
     {
-        //
+        Menu::findorfail($id)->delete();
+        toastr()->success('Menu berhasil dihapus');
+        return redirect()->route('manage-menu.index');
     }
 }

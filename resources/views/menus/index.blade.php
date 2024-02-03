@@ -64,11 +64,15 @@
                                                     data-toggle="dropdown"><i class="fas fa-cog"></i>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item" href="#">Lihat</a>
                                                     <a class="dropdown-item"
                                                         href="{{ route('manage-menu.edit', $item->id) }}">Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
+                                                    <form method="POST"
+                                                        action="{{ route('manage-menu.destroy', $item->id) }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a class="dropdown-item confirm-button" href="#">Hapus</a>
+                                                    </form>
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -113,6 +117,29 @@
                 "autoWidth": false,
                 "responsive": true,
             });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.confirm-button').click(function(event) {
+            var form = $(this).closest("form");
+            event.preventDefault();
+            swal({
+                    title: `Hapus data`,
+                    icon: "warning",
+                    buttons: {
+                        confirm: {
+                            text: 'Ya'
+                        },
+                        cancel: 'Tidak'
+                    },
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
         });
     </script>
 @endpush
