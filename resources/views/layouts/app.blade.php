@@ -15,10 +15,10 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
+    {{-- <div class="preloader flex-column justify-content-center align-items-center">
         <img class="animation__shake" src="{{ asset('') }}dist/img/logo-umjambi.png" alt="UM Jambi Logo"
             height="80" width="80">
-    </div>
+    </div> --}}
     <div class="wrapper">
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <ul class="navbar-nav">

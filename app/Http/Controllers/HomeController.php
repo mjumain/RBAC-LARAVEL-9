@@ -23,14 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $roles = auth()->user()->roles->pluck('id')->toarray();
-
-        $datas = Menu::with('roles', function ($query) use ($roles) {
-            return $query->whereIn('role_id', $roles);
-        });
-
-
-        dd($datas);
         return view('home');
     }
 }

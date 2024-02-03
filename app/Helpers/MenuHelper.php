@@ -9,26 +9,21 @@ class MenuHelper
 {
     public static function Menu()
     {
-        $menus = Menu::where('parent_id', 0)
-            // ->where('')
-            ->with('submenus', function ($query) {
-                return $query->with('submenus2');
-            })
-            ->join('role_has_menus as b', 'menus.id', 'b.menu_id')
-            ->where('b.role_id', auth()->user()->id)
-            ->orderby('urutan', 'asc')
-            ->get();
-        return json_encode($menus);
 
-        // $menus = Menu::where('parent_id', 0)
-        //     ->where('')
-        //     ->with('submenus', function ($query) {
-        //         return $query->with('submenus2');
-        //     })
-        //     ->join('role_has_menus as b', 'menus.id', 'b.menu_id')
-        //     ->where('b.role_id', auth()->user()->id)
-        //     ->orderby('urutan', 'asc')
-        //     ->get();
-        // return json_encode($menus);
+        $roles = auth()->user()->roles->pluck('id')->toarray();
+        $menus = Menu::where('parent_id', 0)
+            ->with('roles', function ($query) use ($roles) {
+                $query->whereIn('role_id', $roles);
+            })
+            ->with('submenus', function ($query) {
+                $query->join('role_has_menus as b', 'b.menu_id', 'menus.id');
+                $query->with('submenus2', function ($query) {
+                    $query->join('role_has_menus as b', 'b.menu_id', 'menus.id');
+                });
+            })
+            ->join('role_has_menus as b', 'b.menu_id', 'menus.id')
+            ->get();
+
+        return json_encode($menus);
     }
 }

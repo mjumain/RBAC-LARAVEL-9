@@ -27,7 +27,12 @@ class MasterSeeder extends Seeder
             'urutan' => 1
         ]);
 
-        DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [$menu->id, 1]);
+        DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [1, 1]);
+        DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [2, 1]);
+        DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [3, 1]);
+        DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [4, 1]);
+        DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [5, 1]);
+        DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [6, 1]);
 
         Menu::create([
             'nama_menu' => 'dashboard',
