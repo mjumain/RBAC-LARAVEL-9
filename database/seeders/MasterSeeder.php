@@ -20,7 +20,7 @@ class MasterSeeder extends Seeder
     public function run()
     {
         $menu = Menu::create([
-            'nama_menu' => 'Menu Operator',
+            'nama_menu' => 'Menu Manajemen',
             'url' => '#',
             'icon' => '',
             'parent_id' => '0',
@@ -91,7 +91,7 @@ class MasterSeeder extends Seeder
         $menu_id = Menu::create([
             'nama_menu' => 'Backup Database',
             'url' => 'dbbackup',
-            'icon' => 'fas fa-home',
+            'icon' => 'fas fa-database',
             'parent_id' => $menu->id,
             'urutan' => 1
         ]);
