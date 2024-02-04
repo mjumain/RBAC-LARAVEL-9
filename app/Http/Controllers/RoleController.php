@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -45,14 +46,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         try {
-            $role = Role::create(['name' => $request->name]);
+            $role = Role::create(['name' => strtolower($request->name)]);
+            foreach ($request->menu_id as $value) {
+                DB::table('role_has_menus')->insert([
+                    'menu_id' => $value,
+                    'role_id' => $role->id,
+                ]);
+            }
             $role->syncPermissions($request->permission_id);
             toastr()->success('Role berhasil disimpan');
             return redirect()->route('manage-role.index');
         } catch (\Throwable $th) {
-            //throw $th;
+            dd($th);
         }
     }
 

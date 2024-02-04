@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('role_has_menus', function (Blueprint $table) {
-            $table->unsignedBigInteger('menu_id')->primary();
+            $table->id();
+            $table->unsignedBigInteger('menu_id');
             $table->unsignedBigInteger('role_id');
             $table->foreign('menu_id')
                 ->references('id') // role id
