@@ -59,8 +59,8 @@
                                                             action="{{ route('manage-permission.destroy', $permission->id) }}">
                                                             @csrf
                                                             @method('DELETE')
-                                                            {{ $permission->name }} <a class="confirm-button"
-                                                                href="#">X</a>
+                                                            {{ $permission->name }}_<a class="confirm-button"
+                                                                href="#">x</a>
 
                                                         </form>
                                                     @endforeach

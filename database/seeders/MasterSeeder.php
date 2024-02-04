@@ -24,7 +24,7 @@ class MasterSeeder extends Seeder
             'url' => '#',
             'icon' => '',
             'parent_id' => '0',
-            'urutan' => 2
+            'urutan' => 1
         ]);
 
         Menu::create([
@@ -40,7 +40,7 @@ class MasterSeeder extends Seeder
             'url' => '#',
             'icon' => 'fas fa-users-cog',
             'parent_id' => $menu->id,
-            'urutan' => 1
+            'urutan' => 2
         ]);
         $menu_id = Menu::create([
             'nama_menu' => 'Kelola Pengguna',
@@ -74,10 +74,29 @@ class MasterSeeder extends Seeder
         ]);
 
 
+
         Permission::create(['name' => 'create_menu', 'menu_id' => $menu_id->id]);
         Permission::create(['name' => 'read_menu', 'menu_id' => $menu_id->id]);
         Permission::create(['name' => 'update_menu', 'menu_id' => $menu_id->id]);
         Permission::create(['name' => 'delete_menu', 'menu_id' => $menu_id->id]);
+
+        $menu = Menu::create([
+            'nama_menu' => 'Backup Server',
+            'url' => '#',
+            'icon' => '',
+            'parent_id' => '0',
+            'urutan' => 2
+        ]);
+
+        Menu::create([
+            'nama_menu' => 'Backup Database',
+            'url' => 'dbbackup',
+            'icon' => 'fas fa-home',
+            'parent_id' => $menu->id,
+            'urutan' => 1
+        ]);
+
+        Permission::create(['name' => 'backup_database', 'menu_id' => $menu_id->id]);
 
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [1, 1]);
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [2, 1]);
@@ -85,6 +104,7 @@ class MasterSeeder extends Seeder
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [4, 1]);
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [5, 1]);
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [6, 1]);
+        DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [7, 1]);
 
         User::factory()->create([
             'name' => 'Muhammad Jumain',

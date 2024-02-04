@@ -46,7 +46,7 @@
                                         {{-- <img src="assets/images/logo-icon.png" width="60" alt=""> --}}
                                     </div>
                                     <div class="text-center mb-4">
-                                        <h3 class="">SMART</h3>
+                                        <h3 class="">{{ env('APP_NAME', 'UM JAMBI') }}</h3>
                                         <p class="mb-0"></p>
                                     </div>
                                     <div class="form-body">
