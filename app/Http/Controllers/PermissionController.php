@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission as ModelsPermission;
 
 class PermissionController extends Controller
 {
@@ -42,7 +44,18 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            ModelsPermission::create([
+                'name'=>$request->permission,
+                'menu_id'=>$request->menu_id
+            ]);
+            toastr()->success('Permission berhasil disimpan');
+            return redirect()->route('manage-menu.index');
+        } catch (\Throwable $th) {
+            // dd($th);
+            toastr()->error('Permission gagal disimpan, Permission sudah ada');
+            return redirect()->route('manage-menu.index');
+        }
     }
 
     /**
@@ -85,8 +98,10 @@ class PermissionController extends Controller
      * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy($id)
     {
-        //
+        ModelsPermission::findorfail($id)->delete();
+        toastr()->success('Permission berhasil dihapus');
+        return redirect()->route('manage-menu.index');
     }
 }

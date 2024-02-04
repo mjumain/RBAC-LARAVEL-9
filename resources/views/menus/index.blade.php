@@ -55,7 +55,14 @@
                                                     {!! '-' !!}
                                                 @else
                                                     @foreach ($item->permissions as $permission)
-                                                        {!! $permission->name, '</br>' !!}
+                                                        <form method="POST"
+                                                            action="{{ route('manage-permission.destroy', $permission->id) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            {{ $permission->name }} <a class="confirm-button"
+                                                                href="#">X</a>
+
+                                                        </form>
                                                     @endforeach
                                                 @endif
                                             </td>
@@ -73,11 +80,41 @@
                                                         <a class="dropdown-item confirm-button" href="#">Hapus</a>
                                                     </form>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Tambah Permission</a>
+                                                    <a class="dropdown-item" data-toggle="modal"
+                                                        data-target="#modal-default{{ $item->id }}"
+                                                        href="#">Tambah Permission</a>
 
-                                                </div>
                                             </td>
                                         </tr>
+                                        <div class="modal fade" id="modal-default{{ $item->id }}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Permissions {{ $item->nama_menu }} </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ route('manage-permission.store') }}" method="post">
+                                                        <div class="modal-body">
+                                                            @csrf
+                                                            <input type="text" name="menu_id"
+                                                                value="{{ $item->id }}" hidden>
+                                                            <input type="text" name="permission" value=""
+                                                                class="form-control" placeholder="Permission">
+
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-default btn-flat btn-sm"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <button type="submit"
+                                                                class="btn btn-flat btn-sm btn-info">Simpan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
