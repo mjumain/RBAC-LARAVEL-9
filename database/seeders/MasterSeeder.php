@@ -24,11 +24,11 @@ class MasterSeeder extends Seeder
             'url' => '#',
             'icon' => '',
             'parent_id' => '0',
-            'urutan' => 1
+            'urutan' => 2
         ]);
 
         Menu::create([
-            'nama_menu' => 'dashboard',
+            'nama_menu' => 'Dashboard',
             'url' => 'home',
             'icon' => 'fas fa-home',
             'parent_id' => $menu->id,
@@ -40,13 +40,13 @@ class MasterSeeder extends Seeder
             'url' => '#',
             'icon' => 'fas fa-users-cog',
             'parent_id' => $menu->id,
-            'urutan' => 2
+            'urutan' => 1
         ]);
         $menu_id = Menu::create([
             'nama_menu' => 'Kelola Pengguna',
             'url' => 'manage-user',
             'parent_id' => $submenu->id,
-            'urutan' => 2
+            'urutan' => 1
         ]);
 
         Permission::create(['name' => 'create_user', 'menu_id' => $menu_id->id]);
@@ -58,7 +58,7 @@ class MasterSeeder extends Seeder
             'nama_menu' => 'Kelola Role',
             'url' => 'manage-role',
             'parent_id' => $submenu->id,
-            'urutan' => 1
+            'urutan' => 2
         ]);
 
         Permission::create(['name' => 'create_role', 'menu_id' => $menu_id->id]);
@@ -70,19 +70,14 @@ class MasterSeeder extends Seeder
             'nama_menu' => 'Kelola Menu',
             'url' => 'manage-menu',
             'parent_id' => $submenu->id,
-            'urutan' => 2
+            'urutan' => 3
         ]);
+
 
         Permission::create(['name' => 'create_menu', 'menu_id' => $menu_id->id]);
         Permission::create(['name' => 'read_menu', 'menu_id' => $menu_id->id]);
         Permission::create(['name' => 'update_menu', 'menu_id' => $menu_id->id]);
         Permission::create(['name' => 'delete_menu', 'menu_id' => $menu_id->id]);
-
-        Permission::create(['name' => 'create_permission']);
-        Permission::create(['name' => 'read_permission']);
-        Permission::create(['name' => 'update_permission']);
-        Permission::create(['name' => 'delete_permission']);
-
 
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [1, 1]);
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [2, 1]);

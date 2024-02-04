@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 text-uppercase">
-                    <h1 class="m-0">manajemen pengguna</h1>
+                    <h4 class="m-0">manajemen pengguna</h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -72,6 +72,8 @@
                                                         @method('DELETE')
                                                         <a class="dropdown-item confirm-button" href="#">Hapus</a>
                                                     </form>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Tambah Permission</a>
 
                                                 </div>
                                             </td>

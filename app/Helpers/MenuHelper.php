@@ -20,7 +20,6 @@ class MenuHelper
                 ->join('role_has_menus as a', 'a.menu_id', 'menus.id')
                 ->whereIn('a.role_id', $roles)
                 ->get();
-            // dd($parent->id);
 
             if (count($menu) == 0) {
                 $submenu = [];

@@ -47,20 +47,18 @@
                                     <input type="text" name="url" class="form-control" placeholder="URL"
                                         value="{{ $menu->url }}">
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label>Icon Menu</label>
-                                    <select name="icon" id="" class="form-control">
-
-                                    </select>
-                                </div> --}}
+                                <div class="form-group">
+                                    <label>Icon Menu</label> <a href="https://fontawesome.com/v5/search?o=r&m=free"
+                                    target="_blank">Dokumentasi icon</a>
+                                    <input type="text" name="icon" class="form-control" placeholder="Icon" value="{{ $menu->icon }}">
+                                </div>
                                 <div class="form-group">
                                     <label>Parent Menu</label>
-                                    {{-- @dd($menus); --}}
                                     <select name="parent_id" id="" class="form-control">
                                         <option value="0">Sebagai Parent Menu</option>
                                         @foreach ($menus as $item)
                                             <option value="{{ $item->id }}"
-                                                {{ $item->id == $menu->id ? 'selected' : '' }}>
+                                                {{ $item->id == $menu->parent_id ? 'selected' : '' }}>
                                                 Child dari menu
                                                 {{ $item->parent_id == 0 ? strtoupper($item->nama_menu) : ucwords($item->nama_menu) }}
                                             </option>

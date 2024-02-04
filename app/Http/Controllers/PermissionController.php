@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:read_menu')->only('index', 'show');
+        $this->middleware('permission:create_menu')->only('create', 'store');
+        $this->middleware('permission:update_menu')->only('edit', 'update');
+        $this->middleware('permission:delete_menu')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

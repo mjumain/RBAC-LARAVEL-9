@@ -46,10 +46,9 @@
                                     <input type="text" name="url" class="form-control" placeholder="URL">
                                 </div>
                                 <div class="form-group">
-                                    <label>Icon Menu</label>
-                                    <select name="icon" id="" class="form-control">
-
-                                    </select>
+                                    <label>Icon Menu</label> <a href="https://fontawesome.com/v5/search?o=r&m=free"
+                                    target="_blank">Dokumentasi icon</a>
+                                    <input type="text" name="icon" class="form-control" placeholder="Icon">
                                 </div>
                                 <div class="form-group">
                                     <label>Parent Menu</label>

@@ -107,7 +107,6 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         try {
             $menu = Menu::findorfail($id);
             $menu->nama_menu = $request->post('nama_menu');
