@@ -90,7 +90,6 @@ class RoleController extends Controller
             ->join('role_has_permissions as a', 'a.permission_id', 'permissions.id')
             ->where('a.role_id', $role->id)
             ->get();
-        // dd($permissions);
         return view('roles.edit', compact('role', 'menus', 'getmenus', 'permissions'));
     }
 
@@ -103,14 +102,23 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($id);
         try {
+            DB::table('role_has_menus')->where('role_id', $id)->delete();
+            $role = Role::findorfail($id);
+            foreach ($request->menu_id as $value) {
+                DB::table('role_has_menus')->insert([
+                    'menu_id' => $value,
+                    'role_id' => $role->id,
+                ]);
+            }
+
             $role = Role::findorfail($id);
             $role->update(
                 [
                     'name' => $request->name,
                 ]
             );
+
             $role->syncPermissions($request->permission_id);
             toastr()->success('Role berhasil disimpan');
             return redirect()->route('manage-role.index');

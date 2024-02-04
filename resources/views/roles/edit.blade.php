@@ -47,7 +47,7 @@
                                     <ul class="checktree">
                                         @foreach ($menus as $menu)
                                             @if (count($menu->submenus) == '0')
-                                                <li><input type="checkbox" name="menu_id[]" value="{{ $menu->id }}"> <b>
+                                                <li><input type="checkbox" name="menu_id[]" @checked(in_array($menu->id, $getmenus->pluck('menu_id')->toarray())) value="{{ $menu->id }}"> <b>
                                                         {{ $menu->nama_menu }}</b>
                                                     @if (count($menu->permissions) > 0)
                                                         <ul>
@@ -70,7 +70,7 @@
                                                         @foreach ($menu->submenus as $submenu)
                                                             @if (count($submenu->submenus) == 0)
                                                                 <li>
-                                                                    <input type="checkbox" name="menu_id[]"
+                                                                    <input type="checkbox" name="menu_id[]" @checked(in_array($menu->id, $getmenus->pluck('menu_id')->toarray()))
                                                                         value="{{ $submenu->id }}">
                                                                     <b>
                                                                         {{ ucwords($submenu->nama_menu) }}</b>
