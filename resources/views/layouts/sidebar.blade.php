@@ -5,7 +5,8 @@
         @foreach ($menu->submenu as $submenu)
             @if (count($submenu->submenu1) == '0')
                 <li class="nav-item">
-                    <a href="{{ url($submenu->url) }}" class="nav-link">
+                    <a href="{{ url($submenu->url) }}"
+                        class="nav-link {{ Request::segment(1) == $submenu->url ? 'active' : '' }}">
                         <i class="nav-icon {{ $submenu->icon }}"></i>
                         <p>
                             {{ ucwords($submenu->nama_menu) }}
