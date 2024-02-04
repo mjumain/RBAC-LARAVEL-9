@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use Illuminate\Support\Facades\DB;
 use Psy\Util\Json;
 
 class HomeController extends Controller

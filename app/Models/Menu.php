@@ -14,10 +14,6 @@ class Menu extends Model
     {
         return $this->hasMany(Menu::class, 'parent_id', 'id');
     }
-    public function submenus2()
-    {
-        return $this->hasMany(Menu::class, 'parent_id', 'id');
-    }
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_has_menus', 'menu_id', 'role_id');
