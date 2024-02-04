@@ -88,7 +88,7 @@ class MasterSeeder extends Seeder
             'urutan' => 2
         ]);
 
-        Menu::create([
+        $menu_id = Menu::create([
             'nama_menu' => 'Backup Database',
             'url' => 'dbbackup',
             'icon' => 'fas fa-home',
@@ -105,6 +105,7 @@ class MasterSeeder extends Seeder
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [5, 1]);
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [6, 1]);
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [7, 1]);
+        DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [8, 1]);
 
         User::factory()->create([
             'name' => 'Muhammad Jumain',

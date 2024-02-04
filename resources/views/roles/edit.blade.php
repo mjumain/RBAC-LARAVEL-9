@@ -47,7 +47,8 @@
                                     <ul class="checktree">
                                         @foreach ($menus as $menu)
                                             @if (count($menu->submenus) == '0')
-                                                <li><input type="checkbox" name="menu_id[]" @checked(in_array($menu->id, $getmenus->pluck('menu_id')->toarray())) value="{{ $menu->id }}"> <b>
+                                                <li><input type="checkbox" name="menu_id[]" @checked(in_array($menu->id, $getmenus->pluck('menu_id')->toarray()))
+                                                        value="{{ $menu->id }}"> <b>
                                                         {{ $menu->nama_menu }}</b>
                                                     @if (count($menu->permissions) > 0)
                                                         <ul>
@@ -70,7 +71,8 @@
                                                         @foreach ($menu->submenus as $submenu)
                                                             @if (count($submenu->submenus) == 0)
                                                                 <li>
-                                                                    <input type="checkbox" name="menu_id[]" @checked(in_array($menu->id, $getmenus->pluck('menu_id')->toarray()))
+                                                                    <input type="checkbox" name="menu_id[]"
+                                                                        @checked(in_array($menu->id, $getmenus->pluck('menu_id')->toarray()))
                                                                         value="{{ $submenu->id }}">
                                                                     <b>
                                                                         {{ ucwords($submenu->nama_menu) }}</b>
@@ -79,9 +81,10 @@
                                                                             @foreach ($submenu->permissions as $permission)
                                                                                 <li>
                                                                                     <input type="checkbox"
+                                                                                        @checked(in_array($permission->name, $permissions->pluck('name')->toarray()))
                                                                                         name="permission_id[]"
-                                                                                        value="{{ $permission->id }}">
-                                                                                    {!! $permission->detail . '<i>( ' . $permission->permission . ')</i>' !!}
+                                                                                        value="{{ $permission->name }}">
+                                                                                    {!! $permission->detail . '<i>( ' . $permission->name . ')</i>' !!}
                                                                                 </li>
                                                                             @endforeach
                                                                         </ul>
