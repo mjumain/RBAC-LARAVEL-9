@@ -23,17 +23,19 @@
                         <div class="card-header">
                             <h5 class="m-0"></h5>
                             <div class="card-tools">
-                                <a href="{{ route('manage-role.index') }}" class="btn btn-tool"><i class="fas fa-arrow-alt-circle-left"></i></a>
+                                <a href="{{ route('manage-role.index') }}" class="btn btn-tool"><i
+                                        class="fas fa-arrow-alt-circle-left"></i></a>
                             </div>
                         </div>
-                        <form action="{{ route('manage-role.store') }}" method="post">
+                        <form action="{{ route('manage-role.update', $role->id) }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Role Akses</label>
                                     <input type="text" name="name"
                                         class="form-control @error('name')is-invalid @enderror"
-                                        placeholder="Nama Role Akses">
+                                        placeholder="Nama Role Akses" value="{{ $role->name }}">
                                     @error('name')
                                         <div class="invalid-feedback" role="alert">
                                             <span>{{ $message }}</span>
@@ -61,7 +63,8 @@
                                                 </li>
                                             @else
                                                 <li>
-                                                    <input type="checkbox" name="menu_id[]" value="{{ $menu->id }}"> <b>
+                                                    <input type="checkbox" name="menu_id[]" @checked(in_array($menu->id, $getmenus->pluck('menu_id')->toarray()))
+                                                        value="{{ $menu->id }}"> <b>
                                                         {{ $menu->nama_menu }}</b>
                                                     <ul>
                                                         @foreach ($menu->submenus as $submenu)
@@ -87,7 +90,8 @@
                                                             @else
                                                                 <li>
                                                                     <input type="checkbox" name="menu_id[]"
-                                                                        value="{{ $submenu->id }}">
+                                                                        value="{{ $submenu->id }}"
+                                                                        @checked(in_array($submenu->id, $getmenus->pluck('menu_id')->toarray()))>
                                                                     <b>
                                                                         {{ $submenu->nama_menu }}</b>
                                                                     <ul>
@@ -95,6 +99,7 @@
                                                                             @if (count($submenu2->submenus) == 0)
                                                                                 <li>
                                                                                     <input type="checkbox" name="menu_id[]"
+                                                                                        @checked(in_array($submenu2->id, $getmenus->pluck('menu_id')->toarray()))
                                                                                         value="{{ $submenu2->id }}"> <b>
                                                                                         {{ $submenu2->nama_menu }}</b>
                                                                                     @if (count($submenu2->permissions) > 0)
@@ -102,6 +107,7 @@
                                                                                             @foreach ($submenu2->permissions as $permission)
                                                                                                 <li>
                                                                                                     <input type="checkbox"
+                                                                                                        @checked(in_array($permission->name, $permissions->pluck('name')->toarray()))
                                                                                                         name="permission_id[]"
                                                                                                         value="{{ $permission->name }}">
                                                                                                     {!! $permission->detail . '<i>(' . $permission->name . ' )</i>' !!}

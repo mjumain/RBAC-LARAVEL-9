@@ -27,7 +27,8 @@
                         <div class="card-header">
                             <h5 class="m-0"></h5>
                             <div class="card-tools">
-                                <a href="{{ route('manage-role.create') }}" class="btn btn-tool"><i class="fas fa-plus-circle"></i></a>
+                                <a href="{{ route('manage-role.create') }}" class="btn btn-tool"><i
+                                        class="fas fa-plus-circle"></i></a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -35,14 +36,25 @@
                                 <thead>
                                     <th>No</th>
                                     <th>Role Pengguna</th>
-                                    <th>Email</th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
                                     @foreach ($roles as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->email }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-block btn-sm btn-outline-info"
+                                                    data-toggle="dropdown"><i class="fas fa-cog"></i>
+                                                </button>
+                                                <div class="dropdown-menu" role="menu">
+                                                    <a class="dropdown-item" href="#">Lihat</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('manage-role.edit', $item->id) }}">Edit</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Hapus</a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

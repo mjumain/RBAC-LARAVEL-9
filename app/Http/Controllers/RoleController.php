@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -79,9 +80,18 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
-        //
+        $menus = Menu::where('parent_id', 0)->get();
+        $role = Role::findorfail($id);
+        $getmenus = DB::table('role_has_menus')->where('role_id', $id)->get();
+
+        $permissions = DB::table('permissions')
+            ->join('role_has_permissions as a', 'a.permission_id', 'permissions.id')
+            ->where('a.role_id', $role->id)
+            ->get();
+        // dd($permissions);
+        return view('roles.edit', compact('role', 'menus', 'getmenus', 'permissions'));
     }
 
     /**
@@ -91,9 +101,22 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($id);
+        try {
+            $role = Role::findorfail($id);
+            $role->update(
+                [
+                    'name' => $request->name,
+                ]
+            );
+            $role->syncPermissions($request->permission_id);
+            toastr()->success('Role berhasil disimpan');
+            return redirect()->route('manage-role.index');
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 
     /**
