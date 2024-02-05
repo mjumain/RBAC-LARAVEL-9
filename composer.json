@@ -11,6 +11,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.4",
+        "nwidart/laravel-modules": "9.*",
         "spatie/laravel-permission": "^6.3",
         "yoeunes/toastr": "^2.3"
     },
@@ -26,6 +27,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "Modules\\": "Modules/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

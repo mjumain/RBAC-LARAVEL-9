@@ -1,0 +1,11 @@
+{
+    "name": "Admisi",
+    "alias": "admisi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Admisi\\Providers\\AdmisiServiceProvider"
+    ],
+    "files": []
+}
