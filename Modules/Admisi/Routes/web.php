@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Modules\Admisi\Http\Controllers\AdmisiController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +15,6 @@
 |
 */
 
-Route::prefix('admisi')->group(function() {
-    Route::get('/', 'AdmisiController@index');
+Route::prefix('admisi')->group(function () {
+    Route::get('/', [AdmisiController::class, 'index']);
 });
