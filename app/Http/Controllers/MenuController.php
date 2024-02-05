@@ -129,8 +129,13 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        Menu::findorfail($id)->delete();
-        toastr()->success('Menu berhasil dihapus');
-        return redirect()->route('manage-menu.index');
+        try {
+            Menu::findorfail($id)->delete();
+            toastr()->success('Menu berhasil dihapus');
+            return redirect()->route('manage-menu.index');
+        } catch (\Throwable $th) {
+            toastr()->warning('Terdapat masalah diserver');
+            return redirect()->route('manage-role.index');
+        }
     }
 }

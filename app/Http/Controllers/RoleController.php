@@ -58,7 +58,8 @@ class RoleController extends Controller
             toastr()->success('Role berhasil disimpan');
             return redirect()->route('manage-role.index');
         } catch (\Throwable $th) {
-            dd($th);
+            toastr()->warning('Terdapat masalah diserver');
+            return redirect()->route('manage-role.index');
         }
     }
 
@@ -122,7 +123,8 @@ class RoleController extends Controller
             toastr()->success('Role berhasil disimpan');
             return redirect()->route('manage-role.index');
         } catch (\Throwable $th) {
-            dd($th);
+            toastr()->warning('Terdapat masalah diserver');
+            return redirect()->route('manage-role.index');
         }
     }
 
@@ -132,8 +134,17 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        //
+        // Menu::findorfail($id)->delete();
+        try {
+            DB::table('role_has_menus')->where('role_id', $id)->delete();
+            Role::findorfail($id)->delete();
+            toastr()->success('Role berhasil dihapus');
+            return redirect()->route('manage-role.index');
+        } catch (\Throwable $th) {
+            toastr()->warning('Terdapat masalah diserver');
+            return redirect()->route('manage-role.index');
+        }
     }
 }

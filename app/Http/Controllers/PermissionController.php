@@ -46,14 +46,13 @@ class PermissionController extends Controller
     {
         try {
             ModelsPermission::create([
-                'name'=>$request->permission,
-                'menu_id'=>$request->menu_id
+                'name' => $request->permission,
+                'menu_id' => $request->menu_id
             ]);
             toastr()->success('Permission berhasil disimpan');
             return redirect()->route('manage-menu.index');
         } catch (\Throwable $th) {
-            // dd($th);
-            toastr()->error('Permission gagal disimpan, Permission sudah ada');
+            toastr()->warning('Terdapat masalah diserver');
             return redirect()->route('manage-menu.index');
         }
     }
@@ -100,8 +99,13 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        ModelsPermission::findorfail($id)->delete();
-        toastr()->success('Permission berhasil dihapus');
-        return redirect()->route('manage-menu.index');
+        try {
+            ModelsPermission::findorfail($id)->delete();
+            toastr()->success('Permission berhasil dihapus');
+            return redirect()->route('manage-menu.index');
+        } catch (\Throwable $th) {
+            toastr()->warning('Terdapat masalah diserver');
+            return redirect()->route('manage-role.index');
+        }
     }
 }

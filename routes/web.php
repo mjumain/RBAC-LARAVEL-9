@@ -32,4 +32,4 @@ Route::resource('manage-role', RoleController::class);
 Route::resource('manage-menu', MenuController::class);
 Route::resource('manage-permission', PermissionController::class)->only('store', 'destroy');
 
-Route::get('dbbackup', [DBBackupController::class, 'DBDataBackup']);
+Route::get('dbbackup', [DBBackupController::class, 'DBBackup']);

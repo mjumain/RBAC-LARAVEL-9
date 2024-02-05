@@ -60,17 +60,22 @@ class UserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         };
-
-        $data = User::create(
-            [
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make('password'),
-                'email_verified_at' => !blank($request->verified) ? now() : null
-            ]
-        );
-        $data->assignRole(!blank($request->role) ? $request->role : array());
-        return redirect()->route('manage-user.index')->with('success', 'User Created');
+        try {
+            $data = User::create(
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make('password'),
+                    'email_verified_at' => !blank($request->verified) ? now() : null
+                ]
+            );
+            $data->assignRole(!blank($request->role) ? $request->role : array());
+            toastr()->success('Pengguna baru berhasil disimpan');
+            return redirect()->route('manage-user.index');
+        } catch (\Throwable $th) {
+            toastr()->warning('Terdapat masalah diserver');
+            return redirect()->route('manage-user.index');
+        }
     }
 
     /**

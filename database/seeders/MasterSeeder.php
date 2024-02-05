@@ -73,8 +73,6 @@ class MasterSeeder extends Seeder
             'urutan' => 3
         ]);
 
-
-
         Permission::create(['name' => 'create_menu', 'menu_id' => $menu_id->id]);
         Permission::create(['name' => 'read_menu', 'menu_id' => $menu_id->id]);
         Permission::create(['name' => 'update_menu', 'menu_id' => $menu_id->id]);
