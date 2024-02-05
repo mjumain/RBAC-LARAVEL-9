@@ -32,3 +32,8 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        $('.toast').toast('show')
+    </script>
+@endpush
