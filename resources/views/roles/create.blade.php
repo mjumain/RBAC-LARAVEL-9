@@ -52,8 +52,8 @@
                                                             @foreach ($menu->permissions as $permission)
                                                                 <li>
                                                                     <input type="checkbox" name="permission_id[]"
-                                                                        value="{{ $permission->id }}">
-                                                                    {!! $permission->detail . '<i>( ' . $permission->permission . ' )</i>' !!}
+                                                                        value="{{ $permission->name }}">
+                                                                    {!! $permission->detail . '<i>( ' . $permission->name . ' )</i>' !!}
                                                                 </li>
                                                             @endforeach
                                                         </ul>
@@ -77,8 +77,8 @@
                                                                                 <li>
                                                                                     <input type="checkbox"
                                                                                         name="permission_id[]"
-                                                                                        value="{{ $permission->id }}">
-                                                                                    {!! $permission->detail . '<i>( ' . $permission->permission . ')</i>' !!}
+                                                                                        value="{{ $permission->name }}">
+                                                                                    {!! $permission->detail . '<i>( ' . $permission->name . ')</i>' !!}
                                                                                 </li>
                                                                             @endforeach
                                                                         </ul>
