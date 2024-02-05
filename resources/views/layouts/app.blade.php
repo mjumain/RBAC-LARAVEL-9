@@ -55,6 +55,36 @@
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown user-menu">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        <img src="../../dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2"
+                            alt="User Image">
+                        <span class="d-none d-md-inline">Alexander Pierce</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+
+                        <li class="user-header bg-info">
+                            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-3" alt="User Image">
+                            <p>
+                                Alexander Pierce - Web Developer
+                                <small>Member since Nov. 2012</small>
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            <a href="#" class="btn btn-default btn-flat float-right" data-toggle="modal"
+                                data-target="#modal-logout"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
+                            {{-- <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="btn btn-info btn-flat float-right" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                this.closest('form').submit();"><i
+                                class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
+                            </form> --}}
+                        </li>
+
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -62,6 +92,30 @@
                 </li>
             </ul>
         </nav>
+        <div class="modal fade" id="modal-logout" data-backdrop="static" tabindex="-1" role="dialog"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content">
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <div class="modal-body text-center">
+                            <h5>Apakah anda ingin keluar ?</h5>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-sm btn-default btn-flat"
+                                data-dismiss="modal">Tidak</button>
+                            <a class="btn btn-sm btn-info btn-flat float-right" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                            this.closest('form').submit();"><span>Ya,
+                                    Keluar</span></a>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
 
         <aside class="main-sidebar main-sidebar-custom sidebar-dark-info elevation-4">
             <a href="{{ url('') }}" class="brand-link">
@@ -70,20 +124,21 @@
                 <span class="brand-text font-weight-light "><strong>{{ env('APP_NAME', 'UM JAMBI') }}</strong></span>
             </a>
             <div class="sidebar">
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="{{ asset('') }}dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+                        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                     </div>
-                </div>
+                </div> --}}
                 <nav class="mt-2">
                     @include('layouts.sidebar')
                 </nav>
             </div>
 
-            <div class="sidebar-custom">
+            {{-- <div class="sidebar-custom">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a class="btn btn-info btn-block" href="{{ route('logout') }}"
@@ -91,7 +146,7 @@
                 this.closest('form').submit();"><i
                             class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
                 </form>
-            </div>
+            </div> --}}
         </aside>
 
         <div class="content-wrapper">
