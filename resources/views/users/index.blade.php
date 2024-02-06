@@ -56,10 +56,8 @@
                                                     data-toggle="dropdown"><i class="fas fa-cog"></i>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item" href="#">Lihat</a>
                                                     <a class="dropdown-item"
                                                         href="{{ route('manage-user.edit', $item->id) }}">Edit</a>
-                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#">Hapus</a>
                                                 </div>
                                             </td>
