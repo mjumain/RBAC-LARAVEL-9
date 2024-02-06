@@ -27,11 +27,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Handle offline database
-        try {
-            DB::connection()
-                ->getPdo();
-        } catch (Exception $e) {
-            abort($e instanceof PDOException ? 503 : 500);
-        }
     }
 }
