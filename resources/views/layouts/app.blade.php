@@ -59,28 +59,21 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                         <img src="../../dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2"
                             alt="User Image">
-                        <span class="d-none d-md-inline">Alexander Pierce</span>
+                        <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
                         <li class="user-header bg-info">
                             <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-3" alt="User Image">
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                {{ Auth::user()->name }}
+                                <small>Universitas Muhammadiyah Jambi</small>
                             </p>
                         </li>
                         <li class="user-footer">
-                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            <a href="{{ route('profil.index') }}" class="btn btn-default btn-flat">Profil</a>
                             <a href="#" class="btn btn-default btn-flat float-right" data-toggle="modal"
                                 data-target="#modal-logout"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
-                            {{-- <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a class="btn btn-info btn-flat float-right" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                this.closest('form').submit();"><i
-                                class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
-                            </form> --}}
                         </li>
 
                     </ul>
@@ -124,15 +117,6 @@
                 <span class="brand-text font-weight-light "><strong>{{ env('APP_NAME', 'UM JAMBI') }}</strong></span>
             </a>
             <div class="sidebar">
-                {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{ asset('') }}dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
-                        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
-                    </div>
-                </div> --}}
                 <nav class="mt-2">
                     @include('layouts.sidebar')
                 </nav>
