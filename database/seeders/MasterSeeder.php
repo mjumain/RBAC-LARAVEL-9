@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Menu;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -106,12 +105,12 @@ class MasterSeeder extends Seeder
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [8, 1]);
 
         User::factory()->create([
-            'name' => 'Muhammad Jumain',
-            'email' => 'mjumain11@gmail.com',
+            'name' => 'Super Admin',
+            'email' => 'superadmin@gmail.com',
         ]);
 
         $superadmin = Role::create(['name' => 'superadmin']);
         $superadmin->givePermissionTo(Permission::all());
-        User::firstWhere('email', 'mjumain11@gmail.com')->assignRole('superadmin');
+        User::firstWhere('email', 'superadmin@gmail.com')->assignRole('superadmin');
     }
 }
